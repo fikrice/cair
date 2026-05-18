@@ -15,8 +15,14 @@ class LockoutMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if ($request->user() && in_array($request->user()->role, ['finance', 'warehouse'])) {
-            abort(403, 'Akses ke modul ini ditangguhkan sementara. Silakan selesaikan pembayaran tagihan (Term 80%) untuk membuka kembali fitur ini.');
+        $user = $request->user();
+
+        if ($user && in_array($user->role, ['finance', 'warehouse'])) {
+            // Izinkan dashboard, profile, dan logout saja
+            if (!$request->routeIs('dashboard', 'profile.edit', 'profile.update', 'profile.destroy', 'logout') && 
+                !in_array($request->path(), ['dashboard', 'profile', 'logout'])) {
+                abort(403, 'Akses ke modul ini ditangguhkan sementara. Silakan selesaikan pembayaran tagihan (Term 80%) untuk membuka kembali fitur ini.');
+            }
         }
 
         return $next($request);
