@@ -1038,40 +1038,63 @@
     }
 
     @media (max-width: 768px) {
+      /* Fix global spacing */
+      .hero, .features, .credentials, .setup-section, .software-section, .docs-section {
+        padding: 60px 0;
+      }
+
+      /* Fix header */
       header {
-        margin-bottom: 30px;
-        padding: 15px 0;
+        padding: 16px 5%;
+        margin-bottom: 0;
       }
-      .logo-text {
-        font-size: 18px;
-      }
-      .logo-badge {
-        display: none;
-      }
-      .hero {
-        padding: 80px 0 40px 0;
-      }
+      .logo-box { width: 32px; height: 32px; font-size: 16px; border-radius: 8px; }
+      .logo-text { font-size: 18px; }
+      .logo-badge { display: none; }
+      .nav-links { display: none; }
+      .btn-header { padding: 8px 16px; font-size: 11px; }
+
+      /* Fix Hero */
       .hero h1 {
-        font-size: 34px;
+        font-size: 38px;
         letter-spacing: -1px;
         line-height: 1.25;
       }
-      .hero p {
-        font-size: 15px;
-        margin-bottom: 30px;
-      }
-      .hero-ctas {
-        margin-bottom: 50px;
-      }
+      .hero p { font-size: 15px; padding: 0 10px; margin-bottom: 30px; }
+      .hero-ctas { margin-bottom: 50px; }
+
+      /* Fix Grids */
       .features-grid, .term-grid, .setup-grid, .software-grid {
         grid-template-columns: 1fr;
       }
-      .nav-links {
-        display: none;
+      
+      /* Fix Mockup */
+      .mockup-content {
+        grid-template-columns: repeat(2, 1fr);
+        padding: 20px;
+        gap: 15px;
       }
+      
+      .docs-content { padding: 30px 20px; }
+      .docs-terminal-panel { padding: 30px 20px; }
     }
 
     @media (max-width: 480px) {
+      header {
+        padding: 12px 20px;
+      }
+      .logo-text { font-size: 16px; }
+      .btn-header { font-size: 10px; padding: 8px 12px; }
+
+      .hero {
+        padding: 40px 0;
+      }
+      .hero h1 {
+        font-size: 32px;
+      }
+      .hero p {
+        font-size: 14px;
+      }
       .hero-ctas {
         flex-direction: column;
         gap: 12px;
@@ -1083,6 +1106,11 @@
         width: 100%;
         box-sizing: border-box;
       }
+      
+      .mockup-container {
+        transform: perspective(1000px) rotateX(0deg);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+      }
       .mockup-content {
         grid-template-columns: 1fr;
         padding: 15px;
@@ -1090,8 +1118,29 @@
       .mini-card {
         padding: 16px;
       }
+      .mockup-visuals {
+        gap: 15px;
+      }
+      .mockup-chart-box, .mockup-list-box {
+        padding: 16px;
+      }
+
       .section-header h2 {
-        font-size: 24px;
+        font-size: 28px;
+      }
+      .section-header p {
+        margin-bottom: 8px;
+      }
+
+      .feature-card { padding: 24px; min-height: auto; }
+      .setup-step { padding: 24px; }
+      .software-card { padding: 24px; min-height: auto; }
+      .term-card { padding: 20px; }
+      .term-grid { padding: 20px; gap: 16px; }
+
+      .docs-term-body {
+        font-size: 11px;
+        overflow-x: auto;
       }
     }
   </style>
