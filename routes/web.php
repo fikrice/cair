@@ -20,7 +20,7 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['au
 
 Route::middleware('auth')->group(function () {
     $lockout = function($request, $next) {
-        abort(403, 'Akses ke modul ini ditangguhkan sementara. Silakan selesaikan pembayaran tagihan (Term 50%) untuk membuka kembali fitur ini.');
+        abort(403, 'Akses ke modul ini ditangguhkan sementara. Silakan selesaikan pembayaran (Term 80%) untuk membuka kembali fitur ini.');
     };
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
