@@ -3,15 +3,14 @@ export const initChartThree = () => {
     const chartElement = document.querySelector('#chartThree');
 
     if (chartElement) {
+        const labels = JSON.parse(chartElement.getAttribute('data-labels') || '[]');
+        const values = JSON.parse(chartElement.getAttribute('data-values') || '[]');
+
         const chartThreeOptions = {
             series: [{
-                name: "Sales",
-                data: [180, 190, 170, 160, 175, 165, 170, 205, 230, 210, 240, 235],
-            },
-            {
                 name: "Revenue",
-                data: [40, 30, 50, 40, 55, 40, 70, 100, 110, 120, 150, 140],
-            },
+                data: values,
+            }
             ],
             legend: {
                 show: false,
@@ -67,20 +66,7 @@ export const initChartThree = () => {
             },
             xaxis: {
                 type: "category",
-                categories: [
-                    "Jan",
-                    "Feb",
-                    "Mar",
-                    "Apr",
-                    "May",
-                    "Jun",
-                    "Jul",
-                    "Aug",
-                    "Sep",
-                    "Oct",
-                    "Nov",
-                    "Dec",
-                ],
+                categories: labels,
                 axisBorder: {
                     show: false,
                 },

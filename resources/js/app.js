@@ -48,4 +48,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (document.querySelector('#calendar')) {
         import('./components/calendar-init').then(module => module.calendarInit());
     }
+
+    // Pie Chart
+    if (document.querySelector('#stockPieChart')) {
+        import('./components/chart/chart-pie').then(module => module.initStockPieChart());
+    }
 });

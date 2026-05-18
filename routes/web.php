@@ -1,106 +1,109 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\DashboardController;
 
-// dashboard pages
 Route::get('/', function () {
-    return view('pages.dashboard.ecommerce', ['title' => 'E-commerce Dashboard']);
-})->name('dashboard');
+    return redirect()->route('login');
+});
 
-// calender pages
-Route::get('/calendar', function () {
-    return view('pages.calender', ['title' => 'Calendar']);
-})->name('calendar');
+Route::redirect('/signin', '/login');
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\SupplierController;
+use App\Http\Controllers\PurchaseOrderController;
+use App\Http\Controllers\SalesOrderController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\StockAdjustmentController;
 
-// profile pages
-Route::get('/profile', function () {
-    return view('pages.profile', ['title' => 'Profile']);
-})->name('profile');
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth'])->name('dashboard');
 
-// form pages
-Route::get('/form-elements', function () {
-    return view('pages.form.form-elements', ['title' => 'Form Elements']);
-})->name('form-elements');
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-// tables pages
-Route::get('/basic-tables', function () {
-    return view('pages.tables.basic-tables', ['title' => 'Basic Tables']);
-})->name('basic-tables');
+    // Katalog (Admin & Warehouse)
+    Route::middleware('role:admin,warehouse')->group(function () {
+        Route::resource('categories', CategoryController::class);
+        Route::resource('products', ProductController::class);
+        Route::get('stock-movements', [\App\Http\Controllers\StockMovementController::class, 'index'])->name('stock-movements.index');
+    });
 
-// pages
+    // Penyesuaian Stok (Admin Only)
+    Route::middleware('role:admin')->group(function () {
+        Route::resource('stock-adjustments', StockAdjustmentController::class);
+    });
 
-Route::get('/blank', function () {
-    return view('pages.blank', ['title' => 'Blank']);
-})->name('blank');
+    // Operasional Pembelian (Create, Edit, Cancel, Print) - Purchasing
+    Route::middleware('role:purchasing')->group(function () {
+        Route::resource('suppliers', SupplierController::class);
+        Route::patch('suppliers/{supplier}/toggle-status', [SupplierController::class, 'toggleStatus'])->name('suppliers.toggle-status');
 
-// error pages
-Route::get('/error-404', function () {
-    return view('pages.errors.error-404', ['title' => 'Error 404']);
-})->name('error-404');
+        Route::resource('purchase-orders', PurchaseOrderController::class)->except(['index', 'show']);
+        Route::post('purchase-orders/{purchase_order}/cancel', [PurchaseOrderController::class, 'cancel'])->name('purchase-orders.cancel');
+        Route::get('purchase-orders/{purchase_order}/print', [PurchaseOrderController::class, 'print'])->name('purchase-orders.print');
+    });
 
-// chart pages
-Route::get('/line-chart', function () {
-    return view('pages.chart.line-chart', ['title' => 'Line Chart']);
-})->name('line-chart');
+    // Pembelian Dasar (Daftar & Detail) - Bisa diakses Purchasing, Warehouse, Finance
+    Route::middleware('role:purchasing,warehouse,finance')->group(function () {
+        Route::get('purchase-orders', [PurchaseOrderController::class, 'index'])->name('purchase-orders.index');
+        Route::get('purchase-orders/{purchase_order}', [PurchaseOrderController::class, 'show'])->name('purchase-orders.show');
+    });
 
-Route::get('/bar-chart', function () {
-    return view('pages.chart.bar-chart', ['title' => 'Bar Chart']);
-})->name('bar-chart');
+    // Penerimaan Barang (Warehouse)
+    Route::middleware('role:warehouse')->group(function () {
+        Route::post('purchase-orders/{purchase_order}/receive', [PurchaseOrderController::class, 'receive'])->name('purchase-orders.receive');
+    });
 
+    // Penjualan (Admin Only: Create, Store, Delete)
+    Route::middleware('role:admin')->group(function () {
+        Route::get('sales-orders/create', [SalesOrderController::class, 'create'])->name('sales-orders.create');
+        Route::post('sales-orders', [SalesOrderController::class, 'store'])->name('sales-orders.store');
+        Route::delete('sales-orders/{salesOrder}', [SalesOrderController::class, 'destroy'])->name('sales-orders.destroy');
+    });
 
-// authentication pages
-Route::get('/signin', function () {
-    return view('pages.auth.signin', ['title' => 'Sign In']);
-})->name('signin');
+    // Penjualan (Finance & Admin: Edit, Update, Cancel)
+    Route::middleware('role:admin,finance')->group(function () {
+        Route::get('sales-orders/{salesOrder}/edit', [SalesOrderController::class, 'edit'])->name('sales-orders.edit');
+        Route::put('sales-orders/{salesOrder}', [SalesOrderController::class, 'update'])->name('sales-orders.update');
+        Route::patch('sales-orders/{salesOrder}', [SalesOrderController::class, 'update'])->name('sales-orders.update');
+        Route::post('sales-orders/{salesOrder}/cancel', [SalesOrderController::class, 'cancel'])->name('sales-orders.cancel');
+    });
 
-Route::get('/signup', function () {
-    return view('pages.auth.signup', ['title' => 'Sign Up']);
-})->name('signup');
+    // Validasi Pengiriman SO & PO Payment (Warehouse, Finance, Admin)
+    Route::middleware('role:admin,finance,warehouse')->group(function () {
+        Route::get('sales-orders', [SalesOrderController::class, 'index'])->name('sales-orders.index');
+        Route::get('sales-orders/{salesOrder}', [SalesOrderController::class, 'show'])->name('sales-orders.show');
+        Route::post('sales-orders/{salesOrder}/complete', [SalesOrderController::class, 'complete'])->name('sales-orders.complete');
+        Route::get('sales-orders/{salesOrder}/print', [SalesOrderController::class, 'print'])->name('sales-orders.print');
+        Route::get('sales-orders/{salesOrder}/shipping-label', [SalesOrderController::class, 'shippingLabel'])->name('sales-orders.shipping-label');
+        Route::get('sales-orders/{salesOrder}/payment', [SalesOrderController::class, 'payment'])->name('sales-orders.payment');
+    });
 
-// ui elements pages
-Route::get('/alerts', function () {
-    return view('pages.ui-elements.alerts', ['title' => 'Alerts']);
-})->name('alerts');
+    Route::middleware('role:finance,warehouse')->group(function () {
+        // PO Payment Route
+        Route::get('purchase-orders/{purchase_order}/payment', [PurchaseOrderController::class, 'payment'])->name('purchase-orders.payment');
+    });
 
-Route::get('/avatars', function () {
-    return view('pages.ui-elements.avatars', ['title' => 'Avatars']);
-})->name('avatars');
+    // Keuangan & Pelaporan (Finance)
+    Route::middleware('role:finance')->group(function () {
+        Route::resource('transactions', \App\Http\Controllers\TransactionController::class);
+        Route::get('reports/sales', [\App\Http\Controllers\ReportController::class, 'sales'])->name('reports.sales');
+    });
 
-Route::get('/badge', function () {
-    return view('pages.ui-elements.badges', ['title' => 'Badges']);
-})->name('badges');
+    // Specific Report Access
+    Route::get('reports/purchases', [\App\Http\Controllers\ReportController::class, 'purchases'])
+        ->middleware('role:finance,purchasing')
+        ->name('reports.purchases');
 
-Route::get('/buttons', function () {
-    return view('pages.ui-elements.buttons', ['title' => 'Buttons']);
-})->name('buttons');
+    Route::get('reports/inventory', [\App\Http\Controllers\ReportController::class, 'inventory'])
+        ->middleware('role:finance,warehouse')
+        ->name('reports.inventory');
+    // Manajemen User (Admin Only)
+    Route::middleware('role:admin')->group(function () {
+        Route::resource('users', \App\Http\Controllers\UserController::class);
+    });
+});
 
-Route::get('/image', function () {
-    return view('pages.ui-elements.images', ['title' => 'Images']);
-})->name('images');
-
-Route::get('/videos', function () {
-    return view('pages.ui-elements.videos', ['title' => 'Videos']);
-})->name('videos');
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+require __DIR__ . '/auth.php';

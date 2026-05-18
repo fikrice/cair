@@ -1,430 +1,112 @@
-# TailAdmin Laravel - Tailwind CSS Free Laravel Dashboard
+# StockSell — Modern Inventory & Sales ERP System
 
-**TailAdmin Laravel** is a modern, production-ready admin dashboard template powered by **Laravel 12**, **Tailwind CSS v4**, **Alpine.js**, and a clean, modular architecture. TailAdmin is one of the most popular Tailwind CSS dashboard now also available for Larvael. It’s designed for building fast, scalable admin panels, CRM dashboards, SaaS backends, and any data-driven application where clarity and performance matter.
-![TailAdmin - Next.js Dashboard Preview](./tailadmin-laravel.png)
+**StockSell** adalah sistem ERP (Enterprise Resource Planning) berbasis web yang dirancang untuk membantu UKM/SME dalam mengelola inventaris, pembelian barang, penjualan, hingga laporan keuangan secara real-time. Dibangun dengan **Laravel 12** dan **Tailwind CSS**, StockSell menawarkan antarmuka premium **TailAdmin** yang intuitif dan responsif.
 
+---
 
-## Quick Links
+## 🚀 Fitur Utama
 
-* [✨ Get TailAdmin Laravel](https://tailadmin.com/laravel)
-* [📄 Documentation](https://tailadmin.com/docs)
-* [⬇️ Download](https://tailadmin.com/download)
-* [🌐 Live Demo](https://laravel-demo.tailadmin.com)
+-   **Dashboard Multi-Role**: Visualisasi data unik untuk setiap departemen (Admin, Finance, Warehouse, Purchasing).
+-   **Manajemen Inventaris**: Pelacakan stok otomatis, peringatan stok rendah, dan log mutasi barang.
+-   **Alur Pembelian (PO)**: Siklus pengadaan barang dari pembuatan draft hingga penerimaan di gudang.
+-   **Alur Penjualan (SO)**: Manajemen pesanan pelanggan dengan sistem validasi stok otomatis.
+-   **Pusat Keuangan**: Pencatatan transaksi, manajemen tagihan (invoice), dan laporan laba-rugi otomatis.
+-   **Laporan & Analitik**: Ekspor laporan ke PDF dan visualisasi tren penjualan/pembelian.
 
-Here’s a tighter, more search-friendly version that highlights value and avoids fluff while keeping your structure intact.
+---
 
-## ✨ Key Features
+## 👥 Peran Pengguna (Roles) & Fungsi
 
-* 🚀 **Laravel 12 Core** - Built on the latest Laravel release with improved routing, security, and Blade templating
-* 🎨 **Tailwind CSS v4** - Utility-first styling for rapid, consistent UI development
-* ⚡ **Alpine.js Interactivity** - Lightweight reactivity without a heavy JavaScript framework
-* 📦 **Vite Build System** - Fast dev server, instant HMR, and optimized production builds
-* 📱 **Fully Responsive Layouts** - Smooth, mobile-first design that adapts across all screen sizes
-* 🌙 **Built-in Dark Mode** - Ready-to-use modern dark theme for better usability and aesthetics
-* 📊 **Advanced UI Components** - Charts, data tables, forms, calendars, modals, and reusable blocks for complex dashboards
-* 🎯 **Production-Ready Dashboard UI** - Clean, modern interface crafted for real apps, not placeholder demos
+Sistem ini menggunakan pembagian hak akses (RBAC) untuk memastikan efisiensi kerja:
 
-### Other Versions
+### 1. Admin (Pusat Kendali)
+-   **Fungsi**: Mengawasi seluruh operasional perusahaan.
+-   **Tugas**: Mengelola akun pengguna, konfigurasi sistem, dan membuat pesanan penjualan (Sales Order).
+-   **Akses**: Semua modul (Full Access).
 
-- [Next.js Version](https://github.com/TailAdmin/free-nextjs-admin-dashboard)
-- [React.js Version](https://github.com/TailAdmin/free-react-tailwind-admin-dashboard)
-- [Vue.js Version](https://github.com/TailAdmin/vue-tailwind-admin-dashboard)
-- [Angular Version](https://github.com/TailAdmin/free-angular-tailwind-dashboard)
-- [Laravel Version](https://github.com/TailAdmin/tailadmin-laravel)
+### 2. Purchasing (Pengadaan)
+-   **Fungsi**: Bertanggung jawab atas stok yang masuk dari pemasok.
+-   **Tugas**: Memantau stok rendah, mengelola data supplier, dan membuat Purchase Order (PO).
+-   **Akses**: Dashboard Purchasing, Supplier, dan Purchase Orders.
 
-## 📋 Requirements
-To set up TailAdmin Laravel, make sure your environment includes:
+### 3. Warehouse (Gudang & Logistik)
+-   **Fungsi**: Mengelola pergerakan fisik barang.
+-   **Tugas**: Mengonfirmasi penerimaan barang (PO), melakukan validasi pengiriman barang (SO), dan penyesuaian stok (*Stock Adjustment*).
+-   **Akses**: Dashboard Logistik, Produk, Kategori, Stok, dan Validasi PO/SO.
 
-* **PHP 8.2+**
-* **Composer** (PHP dependency manager)
-* **Node.js 18+** and **npm** (for compiling frontend assets)
-* **Database** - Works with SQLite (default), MySQL, or PostgreSQL
+### 4. Finance (Keuangan)
+-   **Fungsi**: Mengelola arus kas dan validasi pembayaran.
+-   **Tugas**: Memvalidasi pembayaran invoice dari customer, memantau piutang, dan menarik laporan keuangan.
+-   **Akses**: Dashboard Keuangan, Transaksi, dan Laporan (Revenue/Expense).
 
-### Tailwind CSS Laravel Dashboard
+---
 
-TailAdmin delivers a refined Tailwind CSS Laravel Dashboard experience, combining Laravel’s robust backend with Tailwind’s flexible utility classes. The result is a clean, fast, and customizable dashboard that helps developers build modern admin interfaces without the usual front-end complexity. It’s ideal for teams looking for a Tailwind-powered Laravel starter that stays lightweight and easy to scale.
+## 🔄 Alur Kerja Sistem (Workflow)
 
-### Laravel Admin Dashboard
+### A. Alur Pengadaan Barang (Purchase Order)
+1.  **Purchasing**: Membuat PO baru ke supplier (Status: *Pending*, Pembayaran: *Belum Bayar*).
+2.  **Finance**: Membayar pelunasan tagihan supplier terlebih dahulu (Pembayaran: *Lunas*). Status PO tetap *Pending*.
+3.  **Warehouse**: Memantau PO yang sudah lunas dibayar → Menerima barang fisik di gudang → Konfirmasi penerimaan (Status: *Received*).
+4.  **Sistem**: Otomatis menambah stok produk dan mencatat riwayat pengeluaran setelah konfirmasi terima barang.
 
-If you’re searching for a dependable Laravel Admin Dashboard template that’s easy to set up and ready for production, TailAdmin fits the job. It offers a polished UI, reusable components, optimized performance, and all the essentials needed to launch dashboards, CRM systems, and internal tools quickly. It gives developers a solid foundation, so projects move faster with fewer decisions to worry about.
+### B. Alur Penjualan Barang (Sales Order)
+1.  **Admin**: Membuat SO untuk pelanggan (Status: *Processing*, Pembayaran: *Belum Bayar*).
+2.  **Finance**: Mencatat pembayaran dari pelanggan terlebih dahulu → Melakukan pelunasan pembayaran (Pembayaran: *Lunas*). Status SO tetap *Processing*.
+3.  **Warehouse**: Memantau SO yang sudah lunas dibayar → Memotong stok barang fisik → Melakukan pengiriman barang (Status: *Completed*).
+4.  **Sistem**: Otomatis mengurangi stok produk dan mencatat mutasi keluar setelah konfirmasi pengiriman barang.
 
-### Check Your Environment
+---
 
-Verify your installations:
+## 🛠️ Instalasi
 
-```bash
-php -v
-composer -V
-node -v
-npm -v
-```
+Ikuti langkah berikut untuk menjalankan project di lingkungan lokal:
 
-## 🚀 Quick Start Installation
+1.  **Clone Repository**
+    ```bash
+    git clone https://github.com/username/stocksell.git
+    cd stocksell
+    ```
 
-### Step 1: Clone the Repository
+2.  **Instal Dependensi**
+    ```bash
+    composer install
+    npm install
+    ```
 
-```bash
-git clone https://github.com/TailAdmin/tailadmin-laravel.git
-cd tailadmin-laravel
-```
+3.  **Konfigurasi Environment**
+    Salin `.env.example` ke `.env` dan sesuaikan kredensial database Anda.
+    ```bash
+    cp .env.example .env
+    php artisan key:generate
+    ```
 
-### Step 2: Install PHP Dependencies
+4.  **Migrasi & Seeding** (Penting untuk membuat akun default)
+    ```bash
+    php artisan migrate --seed
+    ```
 
-```bash
-composer install
-```
+5.  **Jalankan Aplikasi**
+    ```bash
+    php artisan serve
+    npm run dev
+    ```
 
-This command will install all Laravel dependencies defined in `composer.json`.
+---
 
-### Step 3: Install Node.js Dependencies
+## 📝 Akun Demo Default
+-   **Admin**: `admin@stocksell.com` | `password`
+-   **Finance**: `finance@stocksell.com` | `password`
+-   **Warehouse**: `warehouse@stocksell.com` | `password`
+-   **Purchasing**: `purchasing@stocksell.com` | `password`
 
-```bash
-npm install
-```
+---
 
-Or if you prefer yarn or pnpm:
+## 💻 Tech Stack
+-   **Framework**: Laravel 12
+-   **Styling**: Tailwind CSS v4
+-   **Icons**: Lucide Icons
+-   **Charts**: ApexCharts.js
+-   **Database**: MySQL / SQLite
 
-```bash
-# Using yarn
-yarn install
-
-# Using pnpm
-pnpm install
-```
-
-### Step 4: Environment Configuration
-
-Copy the example environment file:
-
-```bash
-cp .env.example .env
-```
-
-**For Windows users:**
-
-```bash
-copy .env.example .env
-```
-
-**Or create it programmatically:**
-
-```bash
-php -r "file_exists('.env') || copy('.env.example', '.env');"
-```
-
-### Step 5: Generate Application Key
-
-```bash
-php artisan key:generate
-```
-
-This creates a unique encryption key for your application.
-
-### Step 6: Configure Database
-
-#### Option A: Using MySQL/PostgreSQL
-
-Update your `.env` file with your database credentials:
-
-```env
-DB_CONNECTION=mysql
-DB_HOST=127.0.0.1
-DB_PORT=3306
-DB_DATABASE=tailadmin_db
-DB_USERNAME=your_username
-DB_PASSWORD=your_password
-```
-
-Create the database:
-
-```bash
-# MySQL
-mysql -u root -p -e "CREATE DATABASE tailadmin_db;"
-
-# PostgreSQL
-createdb tailadmin_db
-```
-
-Run migrations:
-
-```bash
-php artisan migrate
-```
-
-### Step 7: (Optional) Seed the Database
-
-If you want sample data:
-
-```bash
-php artisan db:seed
-```
-
-### Step 8: Storage Link
-
-Create a symbolic link for file storage:
-
-```bash
-php artisan storage:link
-```
-
-## 🏃 Running the Application
-
-### Development Mode (Recommended)
-
-The easiest way to start development is using the built-in script:
-
-```bash
-composer run dev
-```
-
-This single command starts:
-- ✅ Laravel development server (http://localhost:8000)
-- ✅ Vite dev server for hot module reloading
-- ✅ Queue worker for background jobs
-- ✅ Log monitoring
-
-**Access your application at:** [http://localhost:8000](http://localhost:8000)
-
-### Manual Development Setup
-
-If you prefer to run services individually in separate terminal windows:
-
-**Terminal 1 - Laravel Server:**
-```bash
-php artisan serve
-```
-
-**Terminal 2 - Frontend Assets:**
-```bash
-npm run dev
-```
-
-### Building for Production
-
-#### Build Frontend Assets
-
-```bash
-npm run build
-```
-
-#### Optimize Laravel
-
-```bash
-# Clear and cache configuration
-php artisan config:cache
-
-# Cache routes
-php artisan route:cache
-
-# Cache views
-php artisan view:cache
-
-# Optimize autoloader
-composer install --optimize-autoloader --no-dev
-```
-
-#### Production Environment
-
-Update your `.env` for production:
-
-```env
-APP_ENV=production
-APP_DEBUG=false
-APP_URL=https://yourdomain.com
-```
-
-
-## 🧪 Testing
-
-Run the test suite using Pest:
-
-```bash
-composer run test
-```
-
-Or manually:
-
-```bash
-php artisan test
-```
-
-Run with coverage:
-
-```bash
-php artisan test --coverage
-```
-
-Run specific tests:
-
-```bash
-php artisan test --filter=ExampleTest
-```
-
-## 📜 Available Commands
-
-### Composer Scripts
-
-```bash
-# Start development environment
-composer run dev
-
-# Run tests
-composer run test
-
-# Code formatting (if configured)
-composer run format
-
-# Static analysis (if configured)
-composer run analyze
-```
-
-### NPM Scripts
-
-```bash
-# Start Vite dev server
-npm run dev
-
-# Build for production
-npm run build
-
-# Preview production build
-npm run preview
-
-# Lint JavaScript/TypeScript
-npm run lint
-
-# Format code
-npm run format
-```
-
-### Artisan Commands
-
-```bash
-# Start development server
-php artisan serve
-
-# Run migrations
-php artisan migrate
-
-# Rollback migrations
-php artisan migrate:rollback
-
-# Fresh migrations with seeding
-php artisan migrate:fresh --seed
-
-# Generate application key
-php artisan key:generate
-
-# Clear all caches
-php artisan optimize:clear
-
-# Cache everything for production
-php artisan optimize
-
-# Create symbolic link for storage
-php artisan storage:link
-
-# Start queue worker
-php artisan queue:work
-
-# List all routes
-php artisan route:list
-
-# Create a new controller
-php artisan make:controller YourController
-
-# Create a new model
-php artisan make:model YourModel -m
-
-# Create a new migration
-php artisan make:migration create_your_table
-```
-
-## 📁 Project Structure
-
-```
-tailadmin-laravel/
-├── app/                    # Application logic
-│   ├── Http/              # Controllers, Middleware, Requests
-│   ├── Models/            # Eloquent models
-│   └── Providers/         # Service providers
-├── bootstrap/             # Framework bootstrap files
-├── config/                # Configuration files
-├── database/              # Migrations, seeders, factories
-│   ├── migrations/
-│   ├── seeders/
-│   └── factories/
-├── public/                # Public assets (entry point)
-│   ├── build/            # Compiled assets (generated)
-│   └── index.php         # Application entry point
-├── resources/             # Views and raw assets
-│   ├── css/              # Stylesheets (Tailwind)
-│   ├── js/               # JavaScript files (Alpine.js)
-│   └── views/            # Blade templates
-├── routes/                # Route definitions
-│   ├── web.php           # Web routes
-│   ├── api.php           # API routes
-│   └── console.php       # Console routes
-├── storage/               # Logs, cache, uploads
-│   ├── app/
-│   ├── framework/
-│   └── logs/
-├── tests/                 # Pest test files
-│   ├── Feature/
-│   └── Unit/
-├── .env.example           # Example environment file
-├── artisan                # Artisan CLI
-├── composer.json          # PHP dependencies
-├── package.json           # Node dependencies
-├── vite.config.js         # Vite configuration
-└── tailwind.config.js     # Tailwind configuration
-```
-
-## 🐛 Troubleshooting
-
-### Common Issues
-
-#### "Class not found" errors
-```bash
-composer dump-autoload
-```
-
-#### Permission errors on storage/bootstrap/cache
-```bash
-chmod -R 775 storage bootstrap/cache
-```
-
-#### NPM build errors
-```bash
-rm -rf node_modules package-lock.json
-npm install
-```
-
-#### Clear all caches
-```bash
-php artisan optimize:clear
-```
-
-#### Database connection errors
-- Check `.env` database credentials
-- Ensure database server is running
-- Verify database exists
-
-## 🔄 Update Log
-
-### [April 28, 2026]
-- Added **AI Dashboard** with token usage and revenue tracking.
-- Added **Sales Dashboard** with retention and multi-channel analytics.
-- Added **Finance Dashboard** with cashflow and balance management.
-- Introduced **6 New Layout variations** for improved UI flexibility.
-- Integrated **Advanced Data Visualization** with 7+ new chart types.
-
-### [2026-03-15]
-- Fixed PHP 8.5 deprecation warning
-
-### [2025-12-29]
-- Added Date Picker in Statistics Chart
-
-## License
-
-Refer to our [LICENSE](https://tailadmin.com/license) page for more information.
+---
+*Dibuat untuk memodernisasi manajemen operasional UKM.*

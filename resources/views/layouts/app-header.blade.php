@@ -49,9 +49,16 @@
             </button>
 
             <!-- Logo (mobile only) -->
-            <a href="/" class="xl:hidden">
-                <img class="dark:hidden" src="/images/logo/logo.svg" alt="Logo" />
-                <img class="hidden dark:block" src="/images/logo/logo-dark.svg" alt="Logo" />
+            <a href="/" class="xl:hidden flex items-center gap-3">
+                <!-- Icon Logo -->
+                <div class="flex items-center justify-center min-w-8 min-h-8 w-8 h-8 rounded-lg bg-brand-500 text-white font-bold text-xl leading-none">
+                    M
+                </div>
+                <!-- Text Logo -->
+                <div class="flex flex-col">
+                    <span class="text-lg font-bold text-gray-900 dark:text-white leading-none">Mesama</span>
+                    <span class="text-[9px] font-medium text-gray-500 dark:text-gray-400 uppercase tracking-widest leading-none mt-1">Global Indonesia</span>
+                </div>
             </a>
 
             <!-- Application Menu Toggle (mobile only) -->
@@ -112,12 +119,9 @@
                     </svg>
                 </button>
 
-                <!-- Notification Dropdown -->
-                <x-header.notification-dropdown />
+                <!-- User Dropdown -->
+                <x-header.user-dropdown />
             </div>
-
-            <!-- User Dropdown -->
-            <x-header.user-dropdown />
         </div>
     </div>
 </header>

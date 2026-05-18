@@ -63,15 +63,17 @@
         :class="(!$store.sidebar.isExpanded && !$store.sidebar.isHovered && !$store.sidebar.isMobileOpen) ?
         'xl:justify-center' :
         'justify-start'">
-        <a href="/">
-            <img x-show="$store.sidebar.isExpanded || $store.sidebar.isHovered || $store.sidebar.isMobileOpen"
-                class="dark:hidden" src="/images/logo/logo.svg" alt="Logo" width="150" height="40" />
-            <img x-show="$store.sidebar.isExpanded || $store.sidebar.isHovered || $store.sidebar.isMobileOpen"
-                class="hidden dark:block" src="/images/logo/logo-dark.svg" alt="Logo" width="150"
-                height="40" />
-            <img x-show="!$store.sidebar.isExpanded && !$store.sidebar.isHovered && !$store.sidebar.isMobileOpen"
-                src="/images/logo/logo-icon.svg" alt="Logo" width="32" height="32" />
-
+        <a href="/" class="flex items-center gap-3 px-6 xl:px-0">
+            <!-- Icon Logo -->
+            <div class="flex items-center justify-center min-w-8 min-h-8 w-8 h-8 rounded-lg bg-brand-500 text-white font-bold text-xl leading-none">
+                M
+            </div>
+            <!-- Text Logo (Hidden when collapsed) -->
+            <div x-show="$store.sidebar.isExpanded || $store.sidebar.isHovered || $store.sidebar.isMobileOpen" 
+                 class="flex flex-col whitespace-nowrap overflow-hidden transition-all duration-300">
+                <span class="text-xl font-bold text-gray-900 dark:text-white leading-none">Mesama</span>
+                <span class="text-[10px] font-medium text-gray-500 dark:text-gray-400 uppercase tracking-widest leading-none mt-1">Global Indonesia</span>
+            </div>
         </a>
     </div>
 
@@ -120,7 +122,7 @@
                                             <!-- Text -->
                                             <span
                                                 x-show="$store.sidebar.isExpanded || $store.sidebar.isHovered || $store.sidebar.isMobileOpen"
-                                                class="menu-item-text flex items-center gap-2">
+                                                class="menu-item-text flex-1 flex items-center gap-2">
                                                 {{ $item['name'] }}
                                                 @if (!empty($item['new']))
                                                     <span class="absolute right-10"
@@ -128,6 +130,11 @@
                                                             'menu-dropdown-badge menu-dropdown-badge-active' :
                                                             'menu-dropdown-badge menu-dropdown-badge-inactive'">
                                                         new
+                                                    </span>
+                                                @endif
+                                                @if (!empty($item['badge']))
+                                                    <span class="ml-auto mr-1 flex h-5 min-w-5 shrink-0 items-center justify-center rounded-full bg-error-500 px-1.5 text-[10px] font-extrabold text-white shadow-sm leading-none">
+                                                        {{ $item['badge'] }}
                                                     </span>
                                                 @endif
                                             </span>
@@ -153,6 +160,11 @@
                                                             :class="isActive('{{ $subItem['path'] }}') ?
                                                                 'menu-dropdown-item-active' :
                                                                 'menu-dropdown-item-inactive'">
+                                                            @if (!empty($subItem['icon']))
+                                                                <span class="mr-1.5 opacity-70 scale-[0.8] transform origin-left">
+                                                                    {!! MenuHelper::getIconSvg($subItem['icon']) !!}
+                                                                </span>
+                                                            @endif
                                                             {{ $subItem['name'] }}
                                                             <span class="flex items-center gap-1 ml-auto">
                                                                 @if (!empty($subItem['new']))
@@ -169,6 +181,11 @@
                                                                             'menu-dropdown-badge-pro menu-dropdown-badge-pro-active' :
                                                                             'menu-dropdown-badge-pro menu-dropdown-badge-pro-inactive'">
                                                                         pro
+                                                                    </span>
+                                                                @endif
+                                                                @if (!empty($subItem['badge']))
+                                                                    <span class="flex h-5 min-w-5 shrink-0 items-center justify-center rounded-full bg-error-500 px-1.5 text-[10px] font-extrabold text-white shadow-sm leading-none">
+                                                                        {{ $subItem['badge'] }}
                                                                     </span>
                                                                 @endif
                                                             </span>
@@ -198,12 +215,17 @@
                                             <!-- Text -->
                                             <span
                                                 x-show="$store.sidebar.isExpanded || $store.sidebar.isHovered || $store.sidebar.isMobileOpen"
-                                                class="menu-item-text flex items-center gap-2">
+                                                class="menu-item-text flex-1 flex items-center gap-2">
                                                 {{ $item['name'] }}
                                                 @if (!empty($item['new']))
                                                     <span
                                                         class="ml-2 inline-flex items-center px-2 py-0.5 rounded text-xs font-semibold bg-brand-500 text-white">
                                                         new
+                                                    </span>
+                                                @endif
+                                                @if (!empty($item['badge']))
+                                                    <span class="ml-auto flex h-5 min-w-5 shrink-0 items-center justify-center rounded-full bg-error-500 px-1.5 text-[10px] font-extrabold text-white shadow-sm leading-none">
+                                                        {{ $item['badge'] }}
                                                     </span>
                                                 @endif
                                             </span>
@@ -217,10 +239,7 @@
             </div>
         </nav>
 
-        <!-- Sidebar Widget -->
-        <div x-data x-show="$store.sidebar.isExpanded || $store.sidebar.isHovered || $store.sidebar.isMobileOpen" x-transition class="mt-auto">
-            @include('layouts.sidebar-widget')
-        </div>
+
 
     </div>
 </aside>
