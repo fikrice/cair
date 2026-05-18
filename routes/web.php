@@ -66,8 +66,7 @@ Route::middleware('auth')->group(function () {
     // Penjualan (Finance & Admin: Edit, Update, Cancel)
     Route::middleware('role:admin,finance')->group(function () {
         Route::get('sales-orders/{salesOrder}/edit', [SalesOrderController::class, 'edit'])->name('sales-orders.edit');
-        Route::put('sales-orders/{salesOrder}', [SalesOrderController::class, 'update'])->name('sales-orders.update');
-        Route::patch('sales-orders/{salesOrder}', [SalesOrderController::class, 'update'])->name('sales-orders.update');
+        Route::match(['put', 'patch'], 'sales-orders/{salesOrder}', [SalesOrderController::class, 'update'])->name('sales-orders.update');
         Route::post('sales-orders/{salesOrder}/cancel', [SalesOrderController::class, 'cancel'])->name('sales-orders.cancel');
     });
 
