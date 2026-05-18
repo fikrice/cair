@@ -19,9 +19,6 @@ use App\Http\Controllers\StockAdjustmentController;
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
-    $lockout = function($request, $next) {
-        abort(403, 'Akses ke modul ini ditangguhkan sementara. Silakan selesaikan pembayaran (Term 80%) untuk membuka kembali fitur ini.');
-    };
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
@@ -55,7 +52,7 @@ Route::middleware('auth')->group(function () {
     });
 
     // Penerimaan Barang (Warehouse)
-    Route::middleware(['role:warehouse', $lockout])->group(function () {
+    Route::middleware(['role:warehouse', 'lockout'])->group(function () {
         Route::post('purchase-orders/{purchase_order}/receive', [PurchaseOrderController::class, 'receive'])->name('purchase-orders.receive');
     });
 
@@ -74,7 +71,7 @@ Route::middleware('auth')->group(function () {
     });
 
     // Validasi Pengiriman SO & PO Payment (Warehouse, Finance, Admin)
-    Route::middleware(['role:admin,finance,warehouse', $lockout])->group(function () {
+    Route::middleware(['role:admin,finance,warehouse', 'lockout'])->group(function () {
         Route::get('sales-orders', [SalesOrderController::class, 'index'])->name('sales-orders.index');
         Route::get('sales-orders/{salesOrder}', [SalesOrderController::class, 'show'])->name('sales-orders.show');
         Route::post('sales-orders/{salesOrder}/complete', [SalesOrderController::class, 'complete'])->name('sales-orders.complete');
@@ -83,13 +80,13 @@ Route::middleware('auth')->group(function () {
         Route::get('sales-orders/{salesOrder}/payment', [SalesOrderController::class, 'payment'])->name('sales-orders.payment');
     });
 
-    Route::middleware(['role:finance,warehouse', $lockout])->group(function () {
+    Route::middleware(['role:finance,warehouse', 'lockout'])->group(function () {
         // PO Payment Route
         Route::get('purchase-orders/{purchase_order}/payment', [PurchaseOrderController::class, 'payment'])->name('purchase-orders.payment');
     });
 
     // Keuangan & Pelaporan (Finance)
-    Route::middleware(['role:finance', $lockout])->group(function () {
+    Route::middleware(['role:finance', 'lockout'])->group(function () {
         Route::resource('transactions', \App\Http\Controllers\TransactionController::class);
         Route::get('reports/sales', [\App\Http\Controllers\ReportController::class, 'sales'])->name('reports.sales');
     });
@@ -100,7 +97,7 @@ Route::middleware('auth')->group(function () {
         ->name('reports.purchases');
 
     Route::get('reports/inventory', [\App\Http\Controllers\ReportController::class, 'inventory'])
-        ->middleware(['role:finance,warehouse', $lockout])
+        ->middleware(['role:finance,warehouse', 'lockout'])
         ->name('reports.inventory');
     // Manajemen User (Admin Only)
     Route::middleware('role:admin')->group(function () {

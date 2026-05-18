@@ -75,10 +75,10 @@
       align-items: center;
       position: sticky;
       top: 0;
-      background: rgba(7, 10, 19, 0.7);
+      background: rgba(7, 10, 19, 0.75);
       backdrop-filter: blur(20px);
       border-bottom: 1px solid var(--border-color);
-      z-index: 100;
+      z-index: 1000;
     }
 
     .logo-container {
@@ -86,6 +86,7 @@
       align-items: center;
       gap: 12px;
       text-decoration: none;
+      z-index: 1001; /* Keep above mobile menu */
     }
 
     .logo-box {
@@ -138,6 +139,13 @@
       color: white;
     }
 
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      z-index: 1001;
+    }
+
     .btn-header {
       padding: 10px 22px;
       background: linear-gradient(135deg, var(--primary) 0%, var(--violet) 100%);
@@ -157,6 +165,68 @@
     .btn-header:hover {
       transform: translateY(-2px);
       box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4);
+    }
+
+    /* --- Hamburger Menu Toggle --- */
+    .mobile-toggle {
+      display: none;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 30px;
+      height: 21px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      z-index: 1001;
+    }
+
+    .mobile-toggle span {
+      display: block;
+      width: 100%;
+      height: 2.5px;
+      background-color: white;
+      border-radius: 10px;
+      transition: all 0.3s ease-in-out;
+      transform-origin: left center;
+    }
+
+    /* Mobile Menu Overlay */
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background: rgba(7, 10, 19, 0.98);
+      backdrop-filter: blur(25px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 30px;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-20px);
+      transition: all 0.4s ease-in-out;
+      z-index: 999;
+    }
+
+    .mobile-menu.active {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .mobile-menu a {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text-main);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .mobile-menu a:hover {
+      color: var(--cyan);
     }
 
     /* Container Settings */
@@ -244,6 +314,7 @@
       gap: 10px;
       box-shadow: 0 10px 30px rgba(99, 102, 241, 0.25);
       transition: var(--transition);
+      justify-content: center;
     }
 
     .btn-primary:hover {
@@ -265,6 +336,7 @@
       align-items: center;
       gap: 10px;
       transition: var(--transition);
+      justify-content: center;
     }
 
     .btn-secondary:hover {
@@ -468,7 +540,7 @@
 
     /* Features Grid Section */
     .features {
-      padding: 120px 0;
+      padding: 100px 0;
       position: relative;
     }
 
@@ -653,6 +725,7 @@
       font-family: monospace;
       font-weight: 700;
       color: white;
+      word-break: break-all;
     }
 
     .btn-copy {
@@ -664,6 +737,7 @@
       align-items: center;
       justify-content: center;
       transition: var(--transition);
+      margin-left: 8px;
     }
 
     .btn-copy:hover {
@@ -683,7 +757,7 @@
       font-size: 13px;
       font-weight: 700;
       box-shadow: 0 10px 30px rgba(99, 102, 241, 0.4);
-      z-index: 1000;
+      z-index: 2000;
       display: none;
       animation: fadeInUp 0.3s ease;
     }
@@ -697,67 +771,6 @@
     .setup-section {
       padding: 100px 0;
       position: relative;
-    }
-
-    .setup-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 32px;
-      margin-top: 40px;
-    }
-
-    .setup-step {
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      border-radius: 24px;
-      padding: 32px;
-      position: relative;
-      transition: var(--transition);
-    }
-
-    .setup-step:hover {
-      border-color: rgba(99, 102, 241, 0.2);
-    }
-
-    .step-number {
-      font-size: 36px;
-      font-weight: 900;
-      background: linear-gradient(135deg, var(--cyan) 0%, var(--primary) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin-bottom: 20px;
-      display: block;
-    }
-
-    .setup-step h3 {
-      font-size: 18px;
-      font-weight: 800;
-      color: white;
-      margin-bottom: 12px;
-    }
-
-    .setup-step p {
-      font-size: 13px;
-      color: var(--text-muted);
-      font-weight: 500;
-    }
-
-    /* Footer */
-    footer {
-      border-top: 1px solid var(--border-color);
-      padding: 40px 0;
-      text-align: center;
-      background: #04060d;
-    }
-
-    footer p {
-      font-size: 13px;
-      color: var(--text-muted);
-      font-weight: 500;
-    }
-
-    footer strong {
-      color: white;
     }
 
     /* Software Grid Styles */
@@ -1020,13 +1033,29 @@
       color: white;
     }
 
-    /* Responsive Settings */
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border-color);
+      padding: 40px 0;
+      text-align: center;
+      background: #04060d;
+    }
+
+    footer p {
+      font-size: 13px;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    footer strong {
+      color: white;
+    }
+
+    /* --- RESPONSIVE OPTIMIZATIONS --- */
+    
     @media (max-width: 1024px) {
-      .features-grid, .term-grid, .setup-grid, .software-grid {
+      .features-grid, .term-grid, .software-grid {
         grid-template-columns: repeat(2, 1fr);
-      }
-      .mockup-visuals {
-        grid-template-columns: 1fr;
       }
       .docs-container {
         grid-template-columns: 1fr;
@@ -1038,110 +1067,74 @@
     }
 
     @media (max-width: 768px) {
-      /* Fix global spacing */
-      .hero, .features, .credentials, .setup-section, .software-section, .docs-section {
-        padding: 60px 0;
-      }
-
-      /* Fix header */
       header {
         padding: 16px 5%;
-        margin-bottom: 0;
       }
-      .logo-box { width: 32px; height: 32px; font-size: 16px; border-radius: 8px; }
       .logo-text { font-size: 18px; }
       .logo-badge { display: none; }
-      .nav-links { display: none; }
-      .btn-header { padding: 8px 16px; font-size: 11px; }
+      
+      /* Toggle Menu on Mobile */
+      .nav-links, .header-actions .btn-header {
+        display: none;
+      }
+      .mobile-toggle {
+        display: flex;
+      }
 
-      /* Fix Hero */
+      /* Hamburguer Active Animation */
+      .mobile-toggle.active span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 6px);
+      }
+      .mobile-toggle.active span:nth-child(2) {
+        opacity: 0;
+      }
+      .mobile-toggle.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(6px, -7px);
+      }
+
+      /* Body layout tweaks */
+      .hero { padding: 60px 0 40px 0; }
       .hero h1 {
         font-size: 38px;
         letter-spacing: -1px;
         line-height: 1.25;
       }
-      .hero p { font-size: 15px; padding: 0 10px; margin-bottom: 30px; }
+      .hero p { font-size: 15px; margin-bottom: 30px; }
       .hero-ctas { margin-bottom: 50px; }
-
-      /* Fix Grids */
-      .features-grid, .term-grid, .setup-grid, .software-grid {
+      
+      /* Grids to 1 column on Mobile */
+      .features-grid, .term-grid, .software-grid {
         grid-template-columns: 1fr;
       }
       
-      /* Fix Mockup */
       .mockup-content {
         grid-template-columns: repeat(2, 1fr);
-        padding: 20px;
-        gap: 15px;
       }
+      .mockup-visuals {
+        grid-template-columns: 1fr;
+      }
+      .term-grid { padding: 20px; }
+      .docs-terminal-panel, .docs-content { padding: 24px; }
       
-      .docs-content { padding: 30px 20px; }
-      .docs-terminal-panel { padding: 30px 20px; }
+      .section-header h2 { font-size: 28px; }
     }
 
     @media (max-width: 480px) {
-      header {
-        padding: 12px 20px;
-      }
-      .logo-text { font-size: 16px; }
-      .btn-header { font-size: 10px; padding: 8px 12px; }
-
-      .hero {
-        padding: 40px 0;
-      }
-      .hero h1 {
-        font-size: 32px;
-      }
-      .hero p {
-        font-size: 14px;
-      }
       .hero-ctas {
         flex-direction: column;
         gap: 12px;
         align-items: stretch;
       }
       .hero-ctas a {
-        display: flex;
-        justify-content: center;
         width: 100%;
-        box-sizing: border-box;
-      }
-      
-      .mockup-container {
-        transform: perspective(1000px) rotateX(0deg);
-        box-shadow: 0 20px 40px rgba(0,0,0,0.6);
       }
       .mockup-content {
         grid-template-columns: 1fr;
         padding: 15px;
       }
-      .mini-card {
-        padding: 16px;
-      }
-      .mockup-visuals {
-        gap: 15px;
-      }
-      .mockup-chart-box, .mockup-list-box {
-        padding: 16px;
-      }
-
-      .section-header h2 {
-        font-size: 28px;
-      }
-      .section-header p {
-        margin-bottom: 8px;
-      }
-
-      .feature-card { padding: 24px; min-height: auto; }
-      .setup-step { padding: 24px; }
-      .software-card { padding: 24px; min-height: auto; }
-      .term-card { padding: 20px; }
-      .term-grid { padding: 20px; gap: 16px; }
-
-      .docs-term-body {
-        font-size: 11px;
-        overflow-x: auto;
-      }
+      .mini-card { padding: 16px; }
+      .mockup-header { flex-direction: column; gap: 10px; align-items: flex-start; }
+      .mockup-badge { align-self: flex-end; }
     }
   </style>
 </head>
@@ -1159,14 +1152,34 @@
       <span class="logo-text">Mesama</span>
       <span class="logo-badge">ERP Demo</span>
     </a>
+    
     <div class="nav-links">
       <a href="#fitur">Fitur Utama</a>
       <a href="#kredensial">Akun Demo</a>
       <a href="#prasyarat">Daftar Software</a>
       <a href="#instalasi">Panduan Setup</a>
     </div>
-    <a href="http://mesama.fikrisan.net/login" class="btn-header" target="_blank">Jalankan Demo</a>
+
+    <div class="header-actions">
+      <a href="http://mesama.fikrisan.net/login" class="btn-header" target="_blank">Jalankan Demo</a>
+      
+      <!-- Hamburger Button (Mobile Only) -->
+      <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle Navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
   </header>
+
+  <!-- Mobile Menu Overlay -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#fitur" class="mobile-link">Fitur Utama</a>
+    <a href="#kredensial" class="mobile-link">Akun Demo</a>
+    <a href="#prasyarat" class="mobile-link">Daftar Software</a>
+    <a href="#instalasi" class="mobile-link">Panduan Setup</a>
+    <a href="http://mesama.fikrisan.net/login" class="btn-header mobile-link" style="margin-top: 20px;" target="_blank">Jalankan Demo</a>
+  </div>
 
   <div class="container">
     
@@ -1361,7 +1374,7 @@
               <div class="term-label">Email</div>
               <div class="term-value-group">
                 <span class="term-value" id="email-admin">admin@mesama.com</span>
-                <button class="btn-copy" onclick="copyText('email-admin')">
+                <button class="btn-copy" onclick="copyText('email-admin')" aria-label="Copy Email Admin">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
                 </button>
               </div>
@@ -1370,7 +1383,7 @@
               <div class="term-label">Password</div>
               <div class="term-value-group">
                 <span class="term-value" id="pass-admin">password</span>
-                <button class="btn-copy" onclick="copyText('pass-admin')">
+                <button class="btn-copy" onclick="copyText('pass-admin')" aria-label="Copy Password Admin">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
                 </button>
               </div>
@@ -1387,7 +1400,7 @@
               <div class="term-label">Email</div>
               <div class="term-value-group">
                 <span class="term-value" id="email-finance">finance@mesama.com</span>
-                <button class="btn-copy" onclick="copyText('email-finance')">
+                <button class="btn-copy" onclick="copyText('email-finance')" aria-label="Copy Email Finance">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
                 </button>
               </div>
@@ -1396,7 +1409,7 @@
               <div class="term-label">Password</div>
               <div class="term-value-group">
                 <span class="term-value" id="pass-finance">password</span>
-                <button class="btn-copy" onclick="copyText('pass-finance')">
+                <button class="btn-copy" onclick="copyText('pass-finance')" aria-label="Copy Password Finance">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
                 </button>
               </div>
@@ -1413,7 +1426,7 @@
               <div class="term-label">Email</div>
               <div class="term-value-group">
                 <span class="term-value" id="email-warehouse">warehouse@mesama.com</span>
-                <button class="btn-copy" onclick="copyText('email-warehouse')">
+                <button class="btn-copy" onclick="copyText('email-warehouse')" aria-label="Copy Email Warehouse">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
                 </button>
               </div>
@@ -1422,7 +1435,7 @@
               <div class="term-label">Password</div>
               <div class="term-value-group">
                 <span class="term-value" id="pass-warehouse">password</span>
-                <button class="btn-copy" onclick="copyText('pass-warehouse')">
+                <button class="btn-copy" onclick="copyText('pass-warehouse')" aria-label="Copy Password Warehouse">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
                 </button>
               </div>
@@ -1439,7 +1452,7 @@
               <div class="term-label">Email</div>
               <div class="term-value-group">
                 <span class="term-value" id="email-purchasing">purchasing@mesama.com</span>
-                <button class="btn-copy" onclick="copyText('email-purchasing')">
+                <button class="btn-copy" onclick="copyText('email-purchasing')" aria-label="Copy Email Purchasing">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
                 </button>
               </div>
@@ -1448,7 +1461,7 @@
               <div class="term-label">Password</div>
               <div class="term-value-group">
                 <span class="term-value" id="pass-purchasing">password</span>
-                <button class="btn-copy" onclick="copyText('pass-purchasing')">
+                <button class="btn-copy" onclick="copyText('pass-purchasing')" aria-label="Copy Password Purchasing">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
                 </button>
               </div>
@@ -1566,7 +1579,7 @@
                 <span style="width:6px; height:6px; border-radius:50%; background:#22c55e;"></span>
               </div>
             </div>
-            <pre class="docs-term-body"><button class="docs-btn-copy-code" onclick="copyRawText('cmd-step1')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><code id="cmd-step1"><span class="comment"># Arahkan terminal ke htdocs XAMPP</span>
+            <pre class="docs-term-body"><button class="docs-btn-copy-code" onclick="copyRawText('cmd-step1')" aria-label="Copy Command"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><code id="cmd-step1"><span class="comment"># Arahkan terminal ke htdocs XAMPP</span>
 <span class="cmd">cd C:\xampp\htdocs</span>
 
 <span class="comment"># Salin berkas konfigurasi .env</span>
@@ -1583,7 +1596,7 @@
                 <span style="width:6px; height:6px; border-radius:50%; background:#22c55e;"></span>
               </div>
             </div>
-            <pre class="docs-term-body"><button class="docs-btn-copy-code" onclick="copyRawText('cmd-step2')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><code id="cmd-step2"><span class="comment"># Pasang dependensi PHP & JS</span>
+            <pre class="docs-term-body"><button class="docs-btn-copy-code" onclick="copyRawText('cmd-step2')" aria-label="Copy Command"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><code id="cmd-step2"><span class="comment"># Pasang dependensi PHP & JS</span>
 <span class="cmd">composer install</span>
 <span class="cmd">npm install</span>
 
@@ -1604,7 +1617,7 @@
                 <span style="width:6px; height:6px; border-radius:50%; background:#22c55e;"></span>
               </div>
             </div>
-            <pre class="docs-term-body"><button class="docs-btn-copy-code" onclick="copyRawText('cmd-step3')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><code id="cmd-step3"><span class="comment"># Jalankan server aplikasi utama PHP</span>
+            <pre class="docs-term-body"><button class="docs-btn-copy-code" onclick="copyRawText('cmd-step3')" aria-label="Copy Command"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><code id="cmd-step3"><span class="comment"># Jalankan server aplikasi utama PHP</span>
 <span class="cmd">php artisan serve</span>
 
 <span class="comment"># Jalankan server tampilan Vite (Terminal Baru)</span>
@@ -1628,6 +1641,33 @@
   <div class="toast" id="toast">Berhasil disalin ke clipboard!</div>
 
   <script>
+    /* --- Hamburger Menu Logic --- */
+    const mobileToggle = document.getElementById('mobileToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const mobileLinks = document.querySelectorAll('.mobile-link');
+
+    mobileToggle.addEventListener('click', () => {
+      mobileToggle.classList.toggle('active');
+      mobileMenu.classList.toggle('active');
+      
+      // Prevent body scroll when menu is open
+      if(mobileMenu.classList.contains('active')) {
+        document.body.style.overflow = 'hidden';
+      } else {
+        document.body.style.overflow = '';
+      }
+    });
+
+    // Close menu when clicking a link
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        mobileToggle.classList.remove('active');
+        mobileMenu.classList.remove('active');
+        document.body.style.overflow = '';
+      });
+    });
+
+    /* --- Copy Clipboard Logic --- */
     function copyText(elementId) {
       const textToCopy = document.getElementById(elementId).innerText;
       
