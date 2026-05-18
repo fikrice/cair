@@ -10,6 +10,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet">
   
+  <!-- AOS Scroll Animation Library -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  
   <style>
     /* Premium CSS Variables for tailwind-like custom values & HSL colors */
     :root {
@@ -1034,15 +1037,60 @@
     }
 
     @media (max-width: 768px) {
+      header {
+        margin-bottom: 30px;
+        padding: 15px 0;
+      }
+      .logo-text {
+        font-size: 18px;
+      }
+      .logo-badge {
+        display: none;
+      }
+      .hero {
+        padding: 80px 0 40px 0;
+      }
       .hero h1 {
-        font-size: 40px;
+        font-size: 34px;
         letter-spacing: -1px;
+        line-height: 1.25;
+      }
+      .hero p {
+        font-size: 15px;
+        margin-bottom: 30px;
+      }
+      .hero-ctas {
+        margin-bottom: 50px;
       }
       .features-grid, .term-grid, .setup-grid, .software-grid {
         grid-template-columns: 1fr;
       }
       .nav-links {
         display: none;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-ctas {
+        flex-direction: column;
+        gap: 12px;
+        align-items: stretch;
+      }
+      .hero-ctas a {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        box-sizing: border-box;
+      }
+      .mockup-content {
+        grid-template-columns: 1fr;
+        padding: 15px;
+      }
+      .mini-card {
+        padding: 16px;
+      }
+      .section-header h2 {
+        font-size: 24px;
       }
     }
   </style>
@@ -1074,14 +1122,14 @@
     
     <!-- Hero Section -->
     <section class="hero">
-      <div class="hero-badge">
+      <div class="hero-badge" data-aos="fade-down" data-aos-duration="600">
         <span></span>
         PT Mesama Global Indonesia
       </div>
-      <h1>Sistem Informasi Manajemen Terintegrasi <span>StockSell ERP</span></h1>
-      <p>Solusi enterprise tangguh dengan kontrol akses berbasis peran (RBAC) yang presisi, dirancang untuk efisiensi rantai pasok, manajemen gudang, dan laporan finansial real-time.</p>
+      <h1 data-aos="fade-up" data-aos-delay="100">Sistem Informasi Manajemen Terintegrasi <span>StockSell ERP</span></h1>
+      <p data-aos="fade-up" data-aos-delay="200">Solusi enterprise tangguh dengan kontrol akses berbasis peran (RBAC) yang presisi, dirancang untuk efisiensi rantai pasok, manajemen gudang, dan laporan finansial real-time.</p>
       
-      <div class="hero-ctas">
+      <div class="hero-ctas" data-aos="fade-up" data-aos-delay="300">
         <a href="http://localhost:8000/login" class="btn-primary" target="_blank">
           Coba Demo Live
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
@@ -1092,7 +1140,7 @@
       </div>
 
       <!-- Mockup Showcase of ERP Dashboard -->
-      <div class="mockup-container">
+      <div class="mockup-container" data-aos="zoom-in-up" data-aos-delay="400" data-aos-duration="1000">
         <div class="mockup-inner">
           <div class="mockup-header">
             <div class="mockup-dots">
@@ -1180,14 +1228,14 @@
 
     <!-- Features Section -->
     <section class="features" id="fitur">
-      <div class="section-header">
+      <div class="section-header" data-aos="fade-up">
         <p>Akses Multirole Berbasis Peran</p>
         <h2>4 Modul Operasional ERP Terintegrasi</h2>
       </div>
 
       <div class="features-grid">
         <!-- Card 1 -->
-        <div class="feature-card">
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
           <div class="feature-icon-box icon-admin">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
           </div>
@@ -1199,7 +1247,7 @@
         </div>
 
         <!-- Card 2 -->
-        <div class="feature-card">
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
           <div class="feature-icon-box icon-finance">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
           </div>
@@ -1211,7 +1259,7 @@
         </div>
 
         <!-- Card 3 -->
-        <div class="feature-card">
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
           <div class="feature-icon-box icon-warehouse">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4a2 2 0 0 0 1-1.73z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/></svg>
           </div>
@@ -1223,7 +1271,7 @@
         </div>
 
         <!-- Card 4 -->
-        <div class="feature-card">
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="400">
           <div class="feature-icon-box icon-purchasing">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
           </div>
@@ -1238,12 +1286,12 @@
 
     <!-- Sleek Credentials Section -->
     <section class="credentials" id="kredensial">
-      <div class="section-header">
+      <div class="section-header" data-aos="fade-up">
         <p>Akses Cepat Pengujian</p>
         <h2>Kredensial Akun Live Demo</h2>
       </div>
 
-      <div class="term-box">
+      <div class="term-box" data-aos="zoom-in" data-aos-duration="1000">
         <div class="term-header">
           <div class="term-badge">Terminal Akses Kredensial</div>
           <div style="display:flex; gap:6px;">
@@ -1362,14 +1410,14 @@
 
     <!-- Software Requirements Section -->
     <section class="software-section" id="prasyarat">
-      <div class="section-header">
+      <div class="section-header" data-aos="fade-up">
         <p>Software Prasyarat Pengembang</p>
         <h2>Alat & Tautan Unduhan Resmi</h2>
       </div>
 
       <div class="software-grid">
         <!-- Software 1 -->
-        <div class="software-card">
+        <div class="software-card" data-aos="fade-up" data-aos-delay="100">
           <div>
             <div class="software-logo" style="color: var(--emerald);">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="2" y="2" width="20" height="20" rx="4" /><line x1="6" y1="6" x2="18" y2="18" /><line x1="18" y1="6" x2="6" y2="18" /></svg>
@@ -1384,7 +1432,7 @@
         </div>
 
         <!-- Software 2 -->
-        <div class="software-card">
+        <div class="software-card" data-aos="fade-up" data-aos-delay="200">
           <div>
             <div class="software-logo" style="color: var(--cyan);">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>
@@ -1399,7 +1447,7 @@
         </div>
 
         <!-- Software 3 -->
-        <div class="software-card">
+        <div class="software-card" data-aos="fade-up" data-aos-delay="300">
           <div>
             <div class="software-logo" style="color: var(--primary);">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
@@ -1417,14 +1465,14 @@
 
     <!-- Docs Section (Setup Guide) -->
     <section class="docs-section" id="instalasi">
-      <div class="section-header">
+      <div class="section-header" data-aos="fade-up">
         <p>Developer Documentation</p>
         <h2>Panduan Langkah Instalasi & Setup</h2>
       </div>
 
       <div class="docs-container">
         <!-- Left Side: Interactive Step-by-Step Description -->
-        <div class="docs-content">
+        <div class="docs-content" data-aos="fade-right" data-aos-delay="100">
           <div class="docs-steps">
             <!-- Step 1 -->
             <div class="docs-step">
@@ -1457,7 +1505,7 @@
         </div>
 
         <!-- Right Side: Beautiful Floating Terminals -->
-        <div class="docs-terminal-panel">
+        <div class="docs-terminal-panel" data-aos="fade-left" data-aos-delay="150">
           <!-- Code Block 1 -->
           <div class="docs-term-window">
             <div class="docs-term-header">
@@ -1563,6 +1611,16 @@
         console.error('Gagal menyalin teks: ', err);
       });
     }
+  </script>
+  <!-- AOS Scroll Animation JS Library & Initialisation -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 1000,
+      once: true,
+      easing: 'ease-out-cubic',
+      delay: 50,
+    });
   </script>
 </body>
 </html>

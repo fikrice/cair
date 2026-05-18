@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>StockSell ERP - Transformasi Kendali Bisnis Anda</title>
-
+  
   <!-- Premium Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap"
-    rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet">
+  
+  <!-- AOS Scroll Animation Library -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  
   <style>
     /* Premium CSS Variables for tailwind-like custom values & HSL colors */
     :root {
@@ -61,22 +61,9 @@
       pointer-events: none;
     }
 
-    .glow-1 {
-      top: -100px;
-      left: -100px;
-    }
-
-    .glow-2 {
-      top: 600px;
-      right: -200px;
-      background: radial-gradient(circle, rgba(139, 92, 246, 0.1) 0%, transparent 75%);
-    }
-
-    .glow-3 {
-      bottom: 100px;
-      left: -200px;
-      background: radial-gradient(circle, rgba(34, 211, 238, 0.08) 0%, transparent 75%);
-    }
+    .glow-1 { top: -100px; left: -100px; }
+    .glow-2 { top: 600px; right: -200px; background: radial-gradient(circle, rgba(139, 92, 246, 0.1) 0%, transparent 75%); }
+    .glow-3 { bottom: 100px; left: -200px; background: radial-gradient(circle, rgba(34, 211, 238, 0.08) 0%, transparent 75%); }
 
     /* Navigation Header */
     header {
@@ -287,11 +274,11 @@
 
     /* Mockup Showcase */
     .mockup-container {
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.01) 100%);
+      border: 1px solid rgba(255,255,255,0.1);
       border-radius: 24px;
       padding: 8px;
-      box-shadow: 0 40px 100px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+      box-shadow: 0 40px 100px rgba(0,0,0,0.8), inset 0 1px 0 rgba(255,255,255,0.15);
       position: relative;
       overflow: hidden;
       transform: perspective(1000px) rotateX(5deg);
@@ -306,7 +293,7 @@
     .mockup-inner {
       background: #0f1322;
       border-radius: 18px;
-      border: 1px solid rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255,255,255,0.05);
       overflow: hidden;
     }
 
@@ -330,17 +317,9 @@
       border-radius: 50%;
     }
 
-    .dot-red {
-      background-color: var(--rose);
-    }
-
-    .dot-yellow {
-      background-color: var(--amber);
-    }
-
-    .dot-green {
-      background-color: var(--emerald);
-    }
+    .dot-red { background-color: var(--rose); }
+    .dot-yellow { background-color: var(--amber); }
+    .dot-green { background-color: var(--emerald); }
 
     .mockup-title {
       font-size: 11px;
@@ -372,8 +351,8 @@
 
     /* Mockup Mini Cards */
     .mini-card {
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid rgba(255, 255, 255, 0.05);
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.05);
       border-radius: 16px;
       padding: 20px;
       position: relative;
@@ -398,7 +377,7 @@
       font-size: 9px;
       font-weight: 600;
       color: var(--emerald);
-      background: rgba(52, 211, 153, 0.1);
+      background: rgba(52,211,153,0.1);
       padding: 2px 6px;
       border-radius: 4px;
       position: absolute;
@@ -415,8 +394,8 @@
     }
 
     .mockup-chart-box {
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid rgba(255, 255, 255, 0.05);
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.05);
       border-radius: 20px;
       padding: 24px;
       min-height: 220px;
@@ -445,8 +424,8 @@
     }
 
     .mockup-list-box {
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid rgba(255, 255, 255, 0.05);
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.05);
       border-radius: 20px;
       padding: 24px;
       display: flex;
@@ -459,7 +438,7 @@
       align-items: center;
       justify-content: space-between;
       padding-bottom: 12px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      border-bottom: 1px solid rgba(255,255,255,0.05);
     }
 
     .list-item:last-child {
@@ -550,25 +529,10 @@
       margin-bottom: 30px;
     }
 
-    .icon-admin {
-      background: rgba(99, 102, 241, 0.1);
-      color: var(--primary);
-    }
-
-    .icon-finance {
-      background: rgba(52, 211, 153, 0.1);
-      color: var(--emerald);
-    }
-
-    .icon-warehouse {
-      background: rgba(34, 211, 238, 0.1);
-      color: var(--cyan);
-    }
-
-    .icon-purchasing {
-      background: rgba(245, 158, 11, 0.1);
-      color: var(--amber);
-    }
+    .icon-admin { background: rgba(99, 102, 241, 0.1); color: var(--primary); }
+    .icon-finance { background: rgba(52, 211, 153, 0.1); color: var(--emerald); }
+    .icon-warehouse { background: rgba(34, 211, 238, 0.1); color: var(--cyan); }
+    .icon-purchasing { background: rgba(245, 158, 11, 0.1); color: var(--amber); }
 
     .feature-card h3 {
       font-size: 20px;
@@ -606,7 +570,7 @@
       border: 1px solid var(--border-color);
       border-radius: 24px;
       overflow: hidden;
-      box-shadow: 0 30px 70px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 30px 70px rgba(0,0,0,0.5);
     }
 
     .term-header {
@@ -634,8 +598,8 @@
     }
 
     .term-card {
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid rgba(255, 255, 255, 0.05);
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.05);
       border-radius: 18px;
       padding: 24px;
       text-align: left;
@@ -677,8 +641,8 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      background: rgba(0, 0, 0, 0.2);
-      border: 1px solid rgba(255, 255, 255, 0.03);
+      background: rgba(0,0,0,0.2);
+      border: 1px solid rgba(255,255,255,0.03);
       padding: 8px 12px;
       border-radius: 8px;
     }
@@ -724,15 +688,8 @@
     }
 
     @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     /* Setup Guide Grid */
@@ -810,7 +767,7 @@
 
     .software-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       gap: 24px;
       margin-top: 40px;
     }
@@ -842,8 +799,8 @@
       align-items: center;
       justify-content: center;
       margin-bottom: 20px;
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.05);
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.05);
     }
 
     .software-card h3 {
@@ -974,12 +931,12 @@
 
     .docs-step-code-inline {
       font-family: monospace;
-      background: rgba(255, 255, 255, 0.06);
+      background: rgba(255,255,255,0.06);
       padding: 2px 6px;
       border-radius: 4px;
       color: var(--cyan);
       font-size: 12px;
-      border: 1px solid rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255,255,255,0.03);
     }
 
     .docs-terminal-panel {
@@ -996,7 +953,7 @@
       border: 1px solid rgba(255, 255, 255, 0.05);
       border-radius: 16px;
       overflow: hidden;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
     }
 
     .docs-term-header {
@@ -1044,8 +1001,8 @@
       position: absolute;
       top: 14px;
       right: 14px;
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.05);
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.05);
       color: var(--text-muted);
       padding: 6px;
       border-radius: 6px;
@@ -1064,22 +1021,15 @@
 
     /* Responsive Settings */
     @media (max-width: 1024px) {
-
-      .features-grid,
-      .term-grid,
-      .setup-grid,
-      .software-grid {
+      .features-grid, .term-grid, .setup-grid, .software-grid {
         grid-template-columns: repeat(2, 1fr);
       }
-
       .mockup-visuals {
         grid-template-columns: 1fr;
       }
-
       .docs-container {
         grid-template-columns: 1fr;
       }
-
       .docs-content {
         border-right: none;
         border-bottom: 1px solid var(--border-color);
@@ -1087,25 +1037,64 @@
     }
 
     @media (max-width: 768px) {
-      .hero h1 {
-        font-size: 40px;
-        letter-spacing: -1px;
+      header {
+        margin-bottom: 30px;
+        padding: 15px 0;
       }
-
-      .features-grid,
-      .term-grid,
-      .setup-grid,
-      .software-grid {
+      .logo-text {
+        font-size: 18px;
+      }
+      .logo-badge {
+        display: none;
+      }
+      .hero {
+        padding: 80px 0 40px 0;
+      }
+      .hero h1 {
+        font-size: 34px;
+        letter-spacing: -1px;
+        line-height: 1.25;
+      }
+      .hero p {
+        font-size: 15px;
+        margin-bottom: 30px;
+      }
+      .hero-ctas {
+        margin-bottom: 50px;
+      }
+      .features-grid, .term-grid, .setup-grid, .software-grid {
         grid-template-columns: 1fr;
       }
-
       .nav-links {
         display: none;
       }
     }
+
+    @media (max-width: 480px) {
+      .hero-ctas {
+        flex-direction: column;
+        gap: 12px;
+        align-items: stretch;
+      }
+      .hero-ctas a {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        box-sizing: border-box;
+      }
+      .mockup-content {
+        grid-template-columns: 1fr;
+        padding: 15px;
+      }
+      .mini-card {
+        padding: 16px;
+      }
+      .section-header h2 {
+        font-size: 24px;
+      }
+    }
   </style>
 </head>
-
 <body>
 
   <!-- Ambient Glowing Blurs -->
@@ -1130,23 +1119,20 @@
   </header>
 
   <div class="container">
-
+    
     <!-- Hero Section -->
     <section class="hero">
-      <div class="hero-badge">
+      <div class="hero-badge" data-aos="fade-down" data-aos-duration="600">
         <span></span>
         PT Mesama Global Indonesia
       </div>
-      <h1>Sistem Informasi Manajemen Terintegrasi <span>StockSell ERP</span></h1>
-      <p>Solusi enterprise tangguh dengan kontrol akses berbasis peran (RBAC) yang presisi, dirancang untuk efisiensi
-        rantai pasok, manajemen gudang, dan laporan finansial real-time.</p>
-
-      <div class="hero-ctas">
+      <h1 data-aos="fade-up" data-aos-delay="100">Sistem Informasi Manajemen Terintegrasi <span>StockSell ERP</span></h1>
+      <p data-aos="fade-up" data-aos-delay="200">Solusi enterprise tangguh dengan kontrol akses berbasis peran (RBAC) yang presisi, dirancang untuk efisiensi rantai pasok, manajemen gudang, dan laporan finansial real-time.</p>
+      
+      <div class="hero-ctas" data-aos="fade-up" data-aos-delay="300">
         <a href="http://localhost:8000/login" class="btn-primary" target="_blank">
           Coba Demo Live
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-            <polyline points="9 18 15 12 9 6" />
-          </svg>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
         </a>
         <a href="#instalasi" class="btn-secondary">
           Panduan Setup
@@ -1154,7 +1140,7 @@
       </div>
 
       <!-- Mockup Showcase of ERP Dashboard -->
-      <div class="mockup-container">
+      <div class="mockup-container" data-aos="zoom-in-up" data-aos-delay="400" data-aos-duration="1000">
         <div class="mockup-inner">
           <div class="mockup-header">
             <div class="mockup-dots">
@@ -1168,7 +1154,7 @@
               System Live
             </div>
           </div>
-
+          
           <div class="mockup-content">
             <div class="mini-card">
               <p>Total Produk</p>
@@ -1190,7 +1176,7 @@
               <h3 style="color:var(--emerald);">0</h3>
               <span style="background:rgba(52,211,153,0.1); color:var(--emerald);">Aman</span>
             </div>
-
+            
             <div class="mockup-visuals">
               <div class="mockup-chart-box">
                 <div class="chart-header">
@@ -1201,21 +1187,16 @@
                 <div style="display:flex; justify-content:center; align-items:center; height:100%;">
                   <svg width="180" height="180" viewBox="0 0 36 36">
                     <circle cx="18" cy="18" r="15.915" fill="none" stroke="#161b30" stroke-width="3"></circle>
-                    <circle cx="18" cy="18" r="15.915" fill="none" stroke="var(--primary)" stroke-width="4.2"
-                      stroke-dasharray="35 65" stroke-dashoffset="25"></circle>
-                    <circle cx="18" cy="18" r="15.915" fill="none" stroke="var(--cyan)" stroke-width="4.2"
-                      stroke-dasharray="25 75" stroke-dashoffset="90"></circle>
-                    <circle cx="18" cy="18" r="15.915" fill="none" stroke="var(--emerald)" stroke-width="4.2"
-                      stroke-dasharray="20 80" stroke-dashoffset="65"></circle>
-                    <circle cx="18" cy="18" r="15.915" fill="none" stroke="var(--violet)" stroke-width="4.2"
-                      stroke-dasharray="20 80" stroke-dashoffset="45"></circle>
-                    <text x="18" y="16.5" text-anchor="middle" font-size="2" fill="var(--text-muted)"
-                      font-weight="800">UNIT TOTAL</text>
+                    <circle cx="18" cy="18" r="15.915" fill="none" stroke="var(--primary)" stroke-width="4.2" stroke-dasharray="35 65" stroke-dashoffset="25"></circle>
+                    <circle cx="18" cy="18" r="15.915" fill="none" stroke="var(--cyan)" stroke-width="4.2" stroke-dasharray="25 75" stroke-dashoffset="90"></circle>
+                    <circle cx="18" cy="18" r="15.915" fill="none" stroke="var(--emerald)" stroke-width="4.2" stroke-dasharray="20 80" stroke-dashoffset="65"></circle>
+                    <circle cx="18" cy="18" r="15.915" fill="none" stroke="var(--violet)" stroke-width="4.2" stroke-dasharray="20 80" stroke-dashoffset="45"></circle>
+                    <text x="18" y="16.5" text-anchor="middle" font-size="2" fill="var(--text-muted)" font-weight="800">UNIT TOTAL</text>
                     <text x="18" y="21.5" text-anchor="middle" font-size="4" fill="white" font-weight="900">5.846</text>
                   </svg>
                 </div>
               </div>
-
+              
               <div class="mockup-list-box">
                 <div class="list-item">
                   <div>
@@ -1247,73 +1228,56 @@
 
     <!-- Features Section -->
     <section class="features" id="fitur">
-      <div class="section-header">
+      <div class="section-header" data-aos="fade-up">
         <p>Akses Multirole Berbasis Peran</p>
         <h2>4 Modul Operasional ERP Terintegrasi</h2>
       </div>
 
       <div class="features-grid">
         <!-- Card 1 -->
-        <div class="feature-card">
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
           <div class="feature-icon-box icon-admin">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-            </svg>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
           </div>
           <div>
             <h3>Supervisor Portal</h3>
-            <p>Pengawasan master data produk, pembuatan invoice Sales Order (SO), manajemen otorisasi pengguna, dan
-              pemantauan pergerakan inventaris secara real-time.</p>
+            <p>Pengawasan master data produk, pembuatan invoice Sales Order (SO), manajemen otorisasi pengguna, dan pemantauan pergerakan inventaris secara real-time.</p>
           </div>
           <div class="feature-role">Role: Administrator</div>
         </div>
 
         <!-- Card 2 -->
-        <div class="feature-card">
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
           <div class="feature-icon-box icon-finance">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-              <line x1="12" y1="1" x2="12" y2="23" />
-              <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
-            </svg>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
           </div>
           <div>
             <h3>Pusat Komando Keuangan</h3>
-            <p>Pencatatan pembayaran atas invoice Sales Order (SO), otorisasi pembayaran ke supplier untuk Purchase
-              Order (PO), serta dashboard arus kas keluar/masuk otomatis.</p>
+            <p>Pencatatan pembayaran atas invoice Sales Order (SO), otorisasi pembayaran ke supplier untuk Purchase Order (PO), serta dashboard arus kas keluar/masuk otomatis.</p>
           </div>
           <div class="feature-role">Role: Finance</div>
         </div>
 
         <!-- Card 3 -->
-        <div class="feature-card">
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
           <div class="feature-icon-box icon-warehouse">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-              <path
-                d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4a2 2 0 0 0 1-1.73z" />
-              <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
-            </svg>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4a2 2 0 0 0 1-1.73z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/></svg>
           </div>
           <div>
             <h3>Logistik & Pergudangan</h3>
-            <p>Pemberian konfirmasi stok fisik barang keluar untuk SO prabayar, penerimaan serta verifikasi barang masuk
-              (PO) dari supplier, dan histori log mutasi stok.</p>
+            <p>Pemberian konfirmasi stok fisik barang keluar untuk SO prabayar, penerimaan serta verifikasi barang masuk (PO) dari supplier, dan histori log mutasi stok.</p>
           </div>
           <div class="feature-role">Role: Warehouse</div>
         </div>
 
         <!-- Card 4 -->
-        <div class="feature-card">
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="400">
           <div class="feature-icon-box icon-purchasing">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-              <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z" />
-              <line x1="3" y1="6" x2="21" y2="6" />
-              <path d="M16 10a4 4 0 0 1-8 0" />
-            </svg>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
           </div>
           <div>
             <h3>Pengadaan Barang</h3>
-            <p>Pengajuan pengadaan stok barang (Purchase Order/PO) baru ke supplier mitra terdaftar untuk mencegah
-              terjadinya kekosongan persediaan logistik gudang.</p>
+            <p>Pengajuan pengadaan stok barang (Purchase Order/PO) baru ke supplier mitra terdaftar untuk mencegah terjadinya kekosongan persediaan logistik gudang.</p>
           </div>
           <div class="feature-role">Role: Purchasing</div>
         </div>
@@ -1322,12 +1286,12 @@
 
     <!-- Sleek Credentials Section -->
     <section class="credentials" id="kredensial">
-      <div class="section-header">
+      <div class="section-header" data-aos="fade-up">
         <p>Akses Cepat Pengujian</p>
         <h2>Kredensial Akun Live Demo</h2>
       </div>
 
-      <div class="term-box">
+      <div class="term-box" data-aos="zoom-in" data-aos-duration="1000">
         <div class="term-header">
           <div class="term-badge">Terminal Akses Kredensial</div>
           <div style="display:flex; gap:6px;">
@@ -1335,7 +1299,7 @@
             <span style="width:8px; height:8px; border-radius:50%; background:#333;"></span>
           </div>
         </div>
-
+        
         <div class="term-grid">
           <!-- Akun 1 -->
           <div class="term-card">
@@ -1348,10 +1312,7 @@
               <div class="term-value-group">
                 <span class="term-value" id="email-admin">admin@mesama.com</span>
                 <button class="btn-copy" onclick="copyText('email-admin')">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
-                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
-                  </svg>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
                 </button>
               </div>
             </div>
@@ -1360,10 +1321,7 @@
               <div class="term-value-group">
                 <span class="term-value" id="pass-admin">password</span>
                 <button class="btn-copy" onclick="copyText('pass-admin')">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
-                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
-                  </svg>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
                 </button>
               </div>
             </div>
@@ -1380,10 +1338,7 @@
               <div class="term-value-group">
                 <span class="term-value" id="email-finance">finance@mesama.com</span>
                 <button class="btn-copy" onclick="copyText('email-finance')">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
-                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
-                  </svg>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
                 </button>
               </div>
             </div>
@@ -1392,10 +1347,7 @@
               <div class="term-value-group">
                 <span class="term-value" id="pass-finance">password</span>
                 <button class="btn-copy" onclick="copyText('pass-finance')">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
-                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
-                  </svg>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
                 </button>
               </div>
             </div>
@@ -1412,10 +1364,7 @@
               <div class="term-value-group">
                 <span class="term-value" id="email-warehouse">warehouse@mesama.com</span>
                 <button class="btn-copy" onclick="copyText('email-warehouse')">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
-                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
-                  </svg>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
                 </button>
               </div>
             </div>
@@ -1424,10 +1373,7 @@
               <div class="term-value-group">
                 <span class="term-value" id="pass-warehouse">password</span>
                 <button class="btn-copy" onclick="copyText('pass-warehouse')">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
-                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
-                  </svg>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
                 </button>
               </div>
             </div>
@@ -1444,10 +1390,7 @@
               <div class="term-value-group">
                 <span class="term-value" id="email-purchasing">purchasing@mesama.com</span>
                 <button class="btn-copy" onclick="copyText('email-purchasing')">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
-                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
-                  </svg>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
                 </button>
               </div>
             </div>
@@ -1456,10 +1399,7 @@
               <div class="term-value-group">
                 <span class="term-value" id="pass-purchasing">password</span>
                 <button class="btn-copy" onclick="copyText('pass-purchasing')">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
-                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
-                  </svg>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
                 </button>
               </div>
             </div>
@@ -1470,104 +1410,54 @@
 
     <!-- Software Requirements Section -->
     <section class="software-section" id="prasyarat">
-      <div class="section-header">
+      <div class="section-header" data-aos="fade-up">
         <p>Software Prasyarat Pengembang</p>
         <h2>Alat & Tautan Unduhan Resmi</h2>
       </div>
 
       <div class="software-grid">
         <!-- Software 1 -->
-        <div class="software-card">
+        <div class="software-card" data-aos="fade-up" data-aos-delay="100">
           <div>
             <div class="software-logo" style="color: var(--emerald);">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                <rect x="2" y="2" width="20" height="20" rx="4" />
-                <line x1="6" y1="6" x2="18" y2="18" />
-                <line x1="18" y1="6" x2="6" y2="18" />
-              </svg>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="2" y="2" width="20" height="20" rx="4" /><line x1="6" y1="6" x2="18" y2="18" /><line x1="18" y1="6" x2="6" y2="18" /></svg>
             </div>
             <h3>XAMPP</h3>
-            <p>Membungkus server lokal Apache, database MySQL/MariaDB, dan runtime interpreter PHP 8.1 / 8.2 secara
-              otomatis untuk Windows.</p>
+            <p>Membungkus server lokal Apache, database MySQL/MariaDB, dan runtime interpreter PHP 8.1 / 8.2 secara otomatis untuk Windows.</p>
           </div>
           <a href="https://www.apachefriends.org/download.html" class="btn-download" target="_blank">
             Unduh XAMPP
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-              <polyline points="8 17 12 21 16 17" />
-              <line x1="12" y1="12" x2="12" y2="21" />
-              <path d="M20.88 18.04A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.29" />
-            </svg>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="8 17 12 21 16 17"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.88 18.04A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.29"/></svg>
           </a>
         </div>
 
         <!-- Software 2 -->
-        <div class="software-card">
+        <div class="software-card" data-aos="fade-up" data-aos-delay="200">
           <div>
             <div class="software-logo" style="color: var(--cyan);">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z" />
-              </svg>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>
             </div>
             <h3>Node.js & npm</h3>
-            <p>Runtime engine JavaScript yang diperlukan untuk mengeksekusi bundler Vite dan memproses aset-aset modul
-              tampilan antarmuka.</p>
+            <p>Runtime engine JavaScript yang diperlukan untuk mengeksekusi bundler **Vite** dan memproses aset-aset modul tampilan antarmuka.</p>
           </div>
           <a href="https://nodejs.org/en/download/" class="btn-download" target="_blank">
             Unduh Node.js
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-              <polyline points="8 17 12 21 16 17" />
-              <line x1="12" y1="12" x2="12" y2="21" />
-              <path d="M20.88 18.04A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.29" />
-            </svg>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="8 17 12 21 16 17"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.88 18.04A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.29"/></svg>
           </a>
         </div>
 
         <!-- Software 3 -->
-        <div class="software-card">
+        <div class="software-card" data-aos="fade-up" data-aos-delay="300">
           <div>
             <div class="software-logo" style="color: var(--primary);">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                <circle cx="12" cy="12" r="10" />
-                <path d="M12 6v6l4 2" />
-              </svg>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
             </div>
             <h3>Composer</h3>
-            <p>Manajer dependensi package manager untuk ekosistem bahasa pemrograman PHP (mengunduh pustaka utama
-              Laravel).</p>
+            <p>Manajer dependensi package manager untuk ekosistem bahasa pemrograman PHP (mengunduh pustaka utama Laravel).</p>
           </div>
           <a href="https://getcomposer.org/download/" class="btn-download" target="_blank">
             Unduh Composer
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-              <polyline points="8 17 12 21 16 17" />
-              <line x1="12" y1="12" x2="12" y2="21" />
-              <path d="M20.88 18.04A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.29" />
-            </svg>
-          </a>
-        </div>
-
-        <!-- Software 4 -->
-        <div class="software-card">
-          <div>
-            <div class="software-logo" style="color: var(--violet);">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                <circle cx="18" cy="18" r="3" />
-                <circle cx="6" cy="6" r="3" />
-                <circle cx="6" cy="18" r="3" />
-                <path d="M18 15V9a4 4 0 0 0-4-4H9" />
-                <line x1="6" y1="9" x2="6" y2="15" />
-              </svg>
-            </div>
-            <h3>Git</h3>
-            <p>Alat Version Control System (VCS) untuk mengambil source code aplikasi dari repositori online secara aman
-              dan terstruktur.</p>
-          </div>
-          <a href="https://git-scm.com/downloads" class="btn-download" target="_blank">
-            Unduh Git
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-              <polyline points="8 17 12 21 16 17" />
-              <line x1="12" y1="12" x2="12" y2="21" />
-              <path d="M20.88 18.04A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.29" />
-            </svg>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="8 17 12 21 16 17"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.88 18.04A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.29"/></svg>
           </a>
         </div>
       </div>
@@ -1575,59 +1465,47 @@
 
     <!-- Docs Section (Setup Guide) -->
     <section class="docs-section" id="instalasi">
-      <div class="section-header">
+      <div class="section-header" data-aos="fade-up">
         <p>Developer Documentation</p>
         <h2>Panduan Langkah Instalasi & Setup</h2>
       </div>
 
       <div class="docs-container">
         <!-- Left Side: Interactive Step-by-Step Description -->
-        <div class="docs-content">
+        <div class="docs-content" data-aos="fade-right" data-aos-delay="100">
           <div class="docs-steps">
             <!-- Step 1 -->
             <div class="docs-step">
               <span class="docs-step-num">1</span>
-              <h3>Kloning & Arahkan Folder Proyek</h3>
-              <p>Pastikan Anda telah memasang XAMPP dan Git. Buka terminal/command prompt, arahkan ke direktori root web
-                server XAMPP Anda (default di <span class="docs-step-code-inline">C:\xampp\htdocs\</span>), lalu kloning
-                atau letakkan source code proyek ini di dalam folder tersebut.</p>
+              <h3>Arahkan Folder Proyek</h3>
+              <p>Pastikan Anda telah memasang **XAMPP**. Buka terminal/command prompt, arahkan ke direktori root web server XAMPP Anda (default di <span class="docs-step-code-inline">C:\xampp\htdocs\</span>), lalu letakkan folder source code proyek ini di dalam folder tersebut.</p>
             </div>
 
             <!-- Step 2 -->
             <div class="docs-step">
               <span class="docs-step-num">2</span>
               <h3>Konfigurasi Basis Data & Environment</h3>
-              <p>Buka XAMPP Control Panel lalu aktifkan module Apache dan MySQL. Akses <span
-                  class="docs-step-code-inline">http://localhost/phpmyadmin/</span> melalui browser untuk membuat basis
-                data kosong baru bernama <strong style="color:var(--cyan);">stocksell_db</strong>. Salin berkas <span
-                  class="docs-step-code-inline">.env.example</span> menjadi <span
-                  class="docs-step-code-inline">.env</span> dan sesuaikan konfigurasi basis data Anda.</p>
+              <p>Buka XAMPP Control Panel lalu aktifkan module **Apache** dan **MySQL**. Akses <span class="docs-step-code-inline">http://localhost/phpmyadmin/</span> melalui browser untuk membuat basis data kosong baru bernama <strong style="color:var(--cyan);">stocksell_db</strong>. Salin berkas <span class="docs-step-code-inline">.env.example</span> menjadi <span class="docs-step-code-inline">.env</span> dan sesuaikan konfigurasi basis data Anda.</p>
             </div>
 
             <!-- Step 3 -->
             <div class="docs-step">
               <span class="docs-step-num">3</span>
               <h3>Instalasi Dependensi & Migrasi Data</h3>
-              <p>Jalankan perintah pengelola pustaka PHP <span class="docs-step-code-inline">composer install</span>
-                untuk mengunduh modul Laravel, dilanjutkan dengan <span class="docs-step-code-inline">npm install</span>
-                untuk dependensi tampilan. Jalankan perintah migrasi basis data serta data seeder awal dengan
-                mengetikkan perintah migrasi terpadu di terminal.</p>
+              <p>Jalankan perintah pengelola pustaka PHP <span class="docs-step-code-inline">composer install</span> untuk mengunduh modul Laravel, dilanjutkan dengan <span class="docs-step-code-inline">npm install</span> untuk dependensi tampilan. Jalankan perintah migrasi basis data serta data seeder awal dengan mengetikkan perintah migrasi terpadu di terminal.</p>
             </div>
 
             <!-- Step 4 -->
             <div class="docs-step">
               <span class="docs-step-num">4</span>
               <h3>Jalankan Server Web Lokal</h3>
-              <p>Setelah database terkonfigurasi, jalankan perintah <span class="docs-step-code-inline">php artisan
-                  serve</span> untuk mengaktifkan web server aplikasi PHP lokal, serta buka terminal baru untuk
-                menjalankan bundler aset visual real-time menggunakan perintah <span class="docs-step-code-inline">npm
-                  run dev</span>.</p>
+              <p>Setelah database terkonfigurasi, jalankan perintah <span class="docs-step-code-inline">php artisan serve</span> untuk mengaktifkan web server aplikasi PHP lokal, serta buka terminal baru untuk menjalankan bundler aset visual real-time menggunakan perintah <span class="docs-step-code-inline">npm run dev</span>.</p>
             </div>
           </div>
         </div>
 
         <!-- Right Side: Beautiful Floating Terminals -->
-        <div class="docs-terminal-panel">
+        <div class="docs-terminal-panel" data-aos="fade-left" data-aos-delay="150">
           <!-- Code Block 1 -->
           <div class="docs-term-window">
             <div class="docs-term-header">
@@ -1676,7 +1554,7 @@
                 <span style="width:6px; height:6px; border-radius:50%; background:#22c55e;"></span>
               </div>
             </div>
-            <pre class="docs-term-body"><button class="docs-btn-copy-code" onclick="copyRawText('cmd-step3')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2 2v1"/></svg></button><code id="cmd-step3"><span class="comment"># Jalankan server aplikasi utama PHP</span>
+            <pre class="docs-term-body"><button class="docs-btn-copy-code" onclick="copyRawText('cmd-step3')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><code id="cmd-step3"><span class="comment"># Jalankan server aplikasi utama PHP</span>
 <span class="cmd">php artisan serve</span>
 
 <span class="comment"># Jalankan server tampilan Vite (Terminal Baru)</span>
@@ -1692,8 +1570,7 @@
   <footer>
     <div class="container">
       <p>&copy; 2026 PT Mesama Global Indonesia. Seluruh hak cipta dilindungi undang-undang.</p>
-      <p style="font-size:11px; margin-top:6px; color:rgba(255,255,255,0.3);">Dirancang secara premium menggunakan
-        standar <strong>Digituhub Style</strong>.</p>
+      <p style="font-size:11px; margin-top:6px; color:rgba(255,255,255,0.3);">Dirancang secara premium menggunakan standar <strong>Digituhub Style</strong>.</p>
     </div>
   </footer>
 
@@ -1703,13 +1580,13 @@
   <script>
     function copyText(elementId) {
       const textToCopy = document.getElementById(elementId).innerText;
-
+      
       // Modern Clipboard API
       navigator.clipboard.writeText(textToCopy).then(() => {
         const toast = document.getElementById('toast');
         toast.innerText = 'Kredensial berhasil disalin ke clipboard!';
         toast.style.display = 'block';
-
+        
         setTimeout(() => {
           toast.style.display = 'none';
         }, 2000);
@@ -1720,13 +1597,13 @@
 
     function copyRawText(elementId) {
       const textToCopy = document.getElementById(elementId).innerText;
-
+      
       // Modern Clipboard API
       navigator.clipboard.writeText(textToCopy).then(() => {
         const toast = document.getElementById('toast');
         toast.innerText = 'Perintah berhasil disalin ke clipboard!';
         toast.style.display = 'block';
-
+        
         setTimeout(() => {
           toast.style.display = 'none';
         }, 2000);
@@ -1735,6 +1612,15 @@
       });
     }
   </script>
+  <!-- AOS Scroll Animation JS Library & Initialisation -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 1000,
+      once: true,
+      easing: 'ease-out-cubic',
+      delay: 50,
+    });
+  </script>
 </body>
-
 </html>
