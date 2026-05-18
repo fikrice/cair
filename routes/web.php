@@ -16,9 +16,9 @@ use App\Http\Controllers\SalesOrderController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\StockAdjustmentController;
 
-Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'lockout'])->name('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth'])->name('dashboard');
 
-Route::middleware(['auth', 'lockout'])->group(function () {
+Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');

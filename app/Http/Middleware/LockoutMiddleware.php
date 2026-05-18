@@ -15,6 +15,10 @@ class LockoutMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        abort(403, 'Akses ke modul ini ditangguhkan sementara. Silakan selesaikan pembayaran tagihan (Term 80%) untuk membuka kembali fitur ini.');
+        if ($request->user() && in_array($request->user()->role, ['finance', 'warehouse'])) {
+            abort(403, 'Akses ke modul ini ditangguhkan sementara. Silakan selesaikan pembayaran tagihan (Term 80%) untuk membuka kembali fitur ini.');
+        }
+
+        return $next($request);
     }
 }

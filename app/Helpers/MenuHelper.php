@@ -140,10 +140,10 @@ class MenuHelper
                     'title' => 'Menu Keuangan',
                     'items' => [
                         ['icon' => 'insights', 'name' => 'Dashboard', 'path' => '/dashboard'],
-                        ['icon' => 'sales', 'name' => 'Pembayaran Pelanggan (SO)', 'path' => '/sales-orders', 'badge' => $soBadge > 0 ? $soBadge : null],
-                        ['icon' => 'procurement', 'name' => 'Pembayaran Supplier (PO)', 'path' => '/purchase-orders', 'badge' => $poBadge > 0 ? $poBadge : null],
-                        ['icon' => 'ledger', 'name' => 'Buku Transaksi', 'path' => '/transactions'],
-                        ['icon' => 'trending-up', 'name' => 'Laporan Pendapatan', 'path' => '/reports/sales'],
+                        ['icon' => 'sales', 'name' => 'Pembayaran Pelanggan (SO) 🔒', 'path' => '/sales-orders', 'badge' => $soBadge > 0 ? $soBadge : null],
+                        ['icon' => 'procurement', 'name' => 'Pembayaran Supplier (PO) 🔒', 'path' => '/purchase-orders', 'badge' => $poBadge > 0 ? $poBadge : null],
+                        ['icon' => 'ledger', 'name' => 'Buku Transaksi 🔒', 'path' => '/transactions'],
+                        ['icon' => 'trending-up', 'name' => 'Laporan Pendapatan 🔒', 'path' => '/reports/sales'],
                         ['icon' => 'trending-down', 'name' => 'Laporan Pengeluaran', 'path' => '/reports/purchases'],
                         ['icon' => 'user-settings', 'name' => 'Profil Saya', 'path' => '/profile'],
                     ]
@@ -161,8 +161,8 @@ class MenuHelper
                     'title' => 'Menu Logistik',
                     'items' => [
                         ['icon' => 'insights', 'name' => 'Dashboard', 'path' => '/dashboard'],
-                        ['icon' => 'sales', 'name' => 'Pengiriman Barang (SO)', 'path' => '/sales-orders', 'badge' => $soBadge > 0 ? $soBadge : null],
-                        ['icon' => 'procurement', 'name' => 'Penerimaan Barang (PO)', 'path' => '/purchase-orders', 'badge' => $poBadge > 0 ? $poBadge : null],
+                        ['icon' => 'sales', 'name' => 'Pengiriman Barang (SO) 🔒', 'path' => '/sales-orders', 'badge' => $soBadge > 0 ? $soBadge : null],
+                        ['icon' => 'procurement', 'name' => 'Penerimaan Barang (PO) 🔒', 'path' => '/purchase-orders', 'badge' => $poBadge > 0 ? $poBadge : null],
                         ['icon' => 'cube', 'name' => 'Data Produk', 'path' => '/products'],
                         ['icon' => 'layers', 'name' => 'Kategori Produk', 'path' => '/categories'],
                         ['icon' => 'activity', 'name' => 'Log Pergerakan Stok', 'path' => '/stock-movements'],
