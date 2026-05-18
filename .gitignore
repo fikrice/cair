@@ -38,3 +38,7 @@ Homestead.yaml
 # Commented out so compiled production assets (CSS/JS) can be pushed to GitHub 
 # and pulled directly on Hostinger (no need to run npm run build on Hostinger server)
 # /public/build
+
+# Ignore all markdown files recursively except README.md
+**/*.md
+!**/README.md
